@@ -89,10 +89,10 @@ public class ConnectSerialPort implements SerialPortEventListener{
 		
 		System.out.println("Program started");
 		
-		//déclaration d'un identifieur de ports
+		//declaration of port identifier
 	    CommPortIdentifier port;
 	    
-	    //déclaration d'itérateur de port
+	    //declaration of iterator of port
 	    Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
 	    
 	    while (ports.hasMoreElements()) {
