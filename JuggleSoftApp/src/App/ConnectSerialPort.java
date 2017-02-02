@@ -21,8 +21,8 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	SerialPort serialPort;
 			
 	// Streams 
-	private InputStream    serialIn;
-	private OutputStream   serialOut;
+	private InputStream serialIn;
+	private OutputStream serialOut;
 	private BufferedReader serialReader;
 
 	/**
@@ -78,10 +78,7 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	 * */
 	public static void log(String line){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		if(System.getProperty("DEBUG") != null){
-			System.out.println( sdf.format(new Date()) + " " +line);
-		}
+		System.out.println( sdf.format(new Date()) + " --> " + line);
 	}
 	
 	/**
@@ -101,7 +98,7 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	    while (ports.hasMoreElements()) {
 	    	port = (CommPortIdentifier) ports.nextElement();
 	     	if(port.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-	    		System.out.println(port.getName());
+	     		log("Port " + port.getName());
 	    	}
 	    }
 
