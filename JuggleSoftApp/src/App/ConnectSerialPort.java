@@ -64,7 +64,12 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	 * Send the color which lignt at the arduino
 	 * */
 	public void sendDataColor(){
-		
+		try {
+			serialOut.write(CONSTANTES.BLEU.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
