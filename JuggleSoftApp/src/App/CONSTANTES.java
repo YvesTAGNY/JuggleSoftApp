@@ -12,6 +12,12 @@ public class CONSTANTES {
 	/**
 	 * declaration des constantes identifiant les différents ports
 	 * */
-	public static final int COM = 0;
+	public static final String PORT1 = "COM1";
+	public static final String PORT2 = "COM2";
+	public static final String PORT3 = "COM3";
+	public static final String PORT4 = "COM4";
+	public static final String PORT5 = "COM5";
+	public static final String PORT6 = "COM6";
+	public static final String PORT7 = "COM7";
 	
 }
