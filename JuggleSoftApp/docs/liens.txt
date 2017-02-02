@@ -1,0 +1,5 @@
+/*SerialPort*/
+https://docs.oracle.com/cd/E17802_01/products/products/javacomm/reference/api/javax/comm/SerialPort.html
+
+/*CommPortIdentifier*/
+https://docs.oracle.com/cd/E17802_01/products/products/javacomm/reference/api/javax/comm/CommPortIdentifier.html

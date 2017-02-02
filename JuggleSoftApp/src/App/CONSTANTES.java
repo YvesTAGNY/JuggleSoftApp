@@ -3,14 +3,14 @@ package App;
 public class CONSTANTES {
 
 	/**
-	 * declaration des constantes des couleurs que doivent prendre les balles
+	 * declaration of constants of color that the balls should take it 
 	 * */
-	public static final int VERTE = 1;
-	public static final int ROUGE = 2;
-	public static final int BLEU = 3;
+	public static final String VERTE = "V";
+	public static final String ROUGE = "R";
+	public static final String BLEU = "B";
 	
 	/**
-	 * declaration des constantes identifiant les différents ports
+	 * declaration of constants identifier the port to connect it
 	 * */
 	public static final String PORT = "COM7";
 	

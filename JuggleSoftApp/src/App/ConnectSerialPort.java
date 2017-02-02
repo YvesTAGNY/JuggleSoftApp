@@ -21,8 +21,8 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	SerialPort serialPort;
 			
 	// Streams 
-	private InputStream    serialIn;
-	private OutputStream   serialOut;
+	private InputStream serialIn;
+	private OutputStream serialOut;
 	private BufferedReader serialReader;
 
 	/**
@@ -34,7 +34,7 @@ public class ConnectSerialPort implements SerialPortEventListener{
 		CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(CONSTANTES.PORT); 
         CommPort commPort = port.open(this.getClass().getName(),2000);
         serialPort = (SerialPort) commPort;
-        serialPort.setSerialPortParams(115200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+        serialPort.setSerialPortParams(/*115200*/9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 		serialIn = serialPort.getInputStream();
 		serialOut = serialPort.getOutputStream();
 		serialReader = new BufferedReader( new InputStreamReader(serialIn) );
@@ -64,7 +64,12 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	 * Send the color which lignt at the arduino
 	 * */
 	public void sendDataColor(){
-		
+		try {
+			serialOut.write(CONSTANTES.BLEU.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -73,10 +78,7 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	 * */
 	public static void log(String line){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		if(System.getProperty("DEBUG") != null){
-			System.out.println( sdf.format(new Date()) + " " +line);
-		}
+		System.out.println( sdf.format(new Date()) + " --> " + line);
 	}
 	
 	/**
@@ -87,16 +89,16 @@ public class ConnectSerialPort implements SerialPortEventListener{
 		
 		System.out.println("Program started");
 		
-		//déclaration d'un identifieur de ports
+		//declaration of port identifier
 	    CommPortIdentifier port;
 	    
-	    //déclaration d'itérateur de port
+	    //declaration of iterator of port
 	    Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
 	    
 	    while (ports.hasMoreElements()) {
 	    	port = (CommPortIdentifier) ports.nextElement();
 	     	if(port.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-	    		System.out.println(port.getName());
+	     		log("Port " + port.getName());
 	    	}
 	    }
 
