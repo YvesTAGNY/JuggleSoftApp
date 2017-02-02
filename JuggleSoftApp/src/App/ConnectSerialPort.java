@@ -34,7 +34,7 @@ public class ConnectSerialPort implements SerialPortEventListener{
 		CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(CONSTANTES.PORT); 
         CommPort commPort = port.open(this.getClass().getName(),2000);
         serialPort = (SerialPort) commPort;
-        serialPort.setSerialPortParams(115200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+        serialPort.setSerialPortParams(/*115200*/9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 		serialIn = serialPort.getInputStream();
 		serialOut = serialPort.getOutputStream();
 		serialReader = new BufferedReader( new InputStreamReader(serialIn) );
