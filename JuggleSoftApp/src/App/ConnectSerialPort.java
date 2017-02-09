@@ -51,7 +51,7 @@ public class ConnectSerialPort implements SerialPortEventListener{
 		// TODO Auto-generated method stub
 		try {
 			String line = serialReader.readLine();
-			System.out.println("READ from serial: "+line);
+			log("Readed from serial : " + line);
 			if(line.startsWith("SS:") && line.length()==14){
 				
 			}
@@ -83,10 +83,9 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	
 	/**
 	 * Main
+	 * @throws Exception 
 	 * */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+	public static void main(String[] args) throws Exception {
 		System.out.println("Program started");
 		
 		//declaration of port identifier
@@ -102,6 +101,18 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	    	}
 	    }
 
-		System.out.println("Finished successfully");
+	    ConnectSerialPort sp = new ConnectSerialPort();
+	    sp.OpenPort();
+	    
+	    /*while(true){
+	    	log("Send " + CONSTANTES.BLEU);
+		    sp.serialOut.write(CONSTANTES.BLEU.getBytes());
+		    Thread.sleep(1000);
+		    log("Send " + CONSTANTES.ROUGE);
+		    sp.serialOut.write(CONSTANTES.ROUGE.getBytes());
+		    Thread.sleep(1000);
+	    }*/
+	    
+		//System.out.println("Finished successfully");
 	}
 }
