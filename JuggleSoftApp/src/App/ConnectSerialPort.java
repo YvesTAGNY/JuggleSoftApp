@@ -21,8 +21,8 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	SerialPort serialPort;
 			
 	// Streams 
-	private InputStream    serialIn;
-	private OutputStream   serialOut;
+	private InputStream serialIn;
+	private OutputStream serialOut;
 	private BufferedReader serialReader;
 
 	/**
@@ -34,7 +34,7 @@ public class ConnectSerialPort implements SerialPortEventListener{
 		CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(CONSTANTES.PORT); 
         CommPort commPort = port.open(this.getClass().getName(),2000);
         serialPort = (SerialPort) commPort;
-        serialPort.setSerialPortParams(115200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+        serialPort.setSerialPortParams(/*115200*/9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 		serialIn = serialPort.getInputStream();
 		serialOut = serialPort.getOutputStream();
 		serialReader = new BufferedReader( new InputStreamReader(serialIn) );
@@ -51,7 +51,7 @@ public class ConnectSerialPort implements SerialPortEventListener{
 		// TODO Auto-generated method stub
 		try {
 			String line = serialReader.readLine();
-			System.out.println("READ from serial: "+line);
+			log("Readed from serial : " + line);
 			if(line.startsWith("SS:") && line.length()==14){
 				
 			}
@@ -78,33 +78,41 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	 * */
 	public static void log(String line){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		if(System.getProperty("DEBUG") != null){
-			System.out.println( sdf.format(new Date()) + " " +line);
-		}
+		System.out.println( sdf.format(new Date()) + " --> " + line);
 	}
 	
 	/**
 	 * Main
+	 * @throws Exception 
 	 * */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+	public static void main(String[] args) throws Exception {
 		System.out.println("Program started");
 		
-		//déclaration d'un identifieur de ports
+		//declaration of port identifier
 	    CommPortIdentifier port;
 	    
-	    //déclaration d'itérateur de port
+	    //declaration of iterator of port
 	    Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
 	    
 	    while (ports.hasMoreElements()) {
 	    	port = (CommPortIdentifier) ports.nextElement();
 	     	if(port.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-	    		System.out.println(port.getName());
+	     		log("Port " + port.getName());
 	    	}
 	    }
 
-		System.out.println("Finished successfully");
+	    ConnectSerialPort sp = new ConnectSerialPort();
+	    sp.OpenPort();
+	    
+	    /*while(true){
+	    	log("Send " + CONSTANTES.BLEU);
+		    sp.serialOut.write(CONSTANTES.BLEU.getBytes());
+		    Thread.sleep(1000);
+		    log("Send " + CONSTANTES.ROUGE);
+		    sp.serialOut.write(CONSTANTES.ROUGE.getBytes());
+		    Thread.sleep(1000);
+	    }*/
+	    
+		//System.out.println("Finished successfully");
 	}
 }
