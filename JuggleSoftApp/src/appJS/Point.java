@@ -148,10 +148,4 @@ public class Point {
 		c = Integer.parseInt(decoupeA[2]);
 	}
 	
-	public static void main(String[] args) throws Exception {
-		Point p = new Point("B1_XYZ:24-36-03::ABC:09-11-14");
-		p.parseDataRec();
-		System.out.println(p.toString());
-	}
-	
 }

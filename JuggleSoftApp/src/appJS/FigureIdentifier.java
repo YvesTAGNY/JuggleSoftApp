@@ -12,7 +12,7 @@ public class FigureIdentifier {
 	/**
 	 * Sorting of points according to the ball
 	 */
-	public boolean triPoint(Point p) {
+	public static boolean triPoint(Point p) {
 
 		if (p.getIdBall().equals("B1"))
 			points_B1.add(p);
@@ -27,7 +27,7 @@ public class FigureIdentifier {
 		return valuesFull;
 	}
 	
-	public void resetPoints(){
+	public static void resetPoints(){
 		points_B1.clear();
 		points_B2.clear();
 		valuesFull = false;
@@ -36,34 +36,34 @@ public class FigureIdentifier {
 	/**
 	 * Calculates slopes and angles
 	 */
-	public double[] calculPenteAngle(int index) {
+	public static double[] calculPenteAngle(int index) {
 		/**
 		 * indice 0 = pente_B1; 1= pente_B2; 2= alpha_B1; 3= alpha_B2
 		 */
 		double[] pentesAngles = new double[4];
-
+		System.out.println("-"+index);
 		if (points_B1.get(index).getX() < points_B1.get(index + 1).getX()) {
 			pentesAngles[0] = (points_B1.get(index + 1).getY() - points_B1.get(index).getY())
 					/ (points_B1.get(index + 1).getX() - points_B1.get(index).getX());
 
-			pentesAngles[2] = Math.atan(pentesAngles[0]);
+			pentesAngles[2] = Math.toDegrees(Math.atan(pentesAngles[0]));
 		} else {
 			pentesAngles[0] = (points_B1.get(index).getY() - points_B1.get(index + 1).getY())
 					/ (points_B1.get(index).getX() - points_B1.get(index + 1).getX());
 
-			pentesAngles[2] = Math.atan(pentesAngles[0]);
+			pentesAngles[2] = Math.toDegrees(Math.atan(pentesAngles[0]));
 		}
 
 		if (points_B2.get(index).getX() < points_B2.get(index + 1).getX()) {
 			pentesAngles[1] = (points_B2.get(index + 1).getY() - points_B2.get(index).getY())
 					/ (points_B2.get(index + 1).getX() - points_B2.get(index).getX());
 
-			pentesAngles[3] = Math.atan(pentesAngles[1]);
+			pentesAngles[3] = Math.toDegrees(Math.atan(pentesAngles[1]));
 		} else {
 			pentesAngles[1] = (points_B2.get(index).getY() - points_B2.get(index + 1).getY())
 					/ (points_B2.get(index).getX() - points_B2.get(index + 1).getX());
 
-			pentesAngles[3] = Math.atan(pentesAngles[1]);
+			pentesAngles[3] = Math.toDegrees(Math.atan(pentesAngles[1]));
 		}
 
 		return pentesAngles;
@@ -72,7 +72,7 @@ public class FigureIdentifier {
 	/**
 	 * Identified the figure in the first juggling movements
 	 */
-	public void firtIndentifier() {
+	public static void firtIndentifier() {
 
 		int i = 0;
 
@@ -80,12 +80,16 @@ public class FigureIdentifier {
 
 		pentesAngles = calculPenteAngle(i);
 
-		while (i != 8) {
+		while (i < 4) {
 
-			if (pentesAngles[2] < (double) 20 || pentesAngles[3] < (double) 20) {
-				i = i + 2;
+			System.out.println(i);	
+			System.out.println("p1 "+pentesAngles[0]+" a1 "+pentesAngles[2]);
+			System.out.println("p2 "+pentesAngles[1]+" a2 "+pentesAngles[3]);
+			
+			if (Math.abs(pentesAngles[2]) < (double) 20 || Math.abs(pentesAngles[3]) < (double) 20) {
 				pentesAngles = calculPenteAngle(i);
-			} else {
+			} 
+			else {
 				if ((pentesAngles[0] < 0 && pentesAngles[1] > 0) || (pentesAngles[0] > 0 && pentesAngles[1] < 0)) {
 					System.out.println("c'est un croisé");
 				} else {
@@ -93,8 +97,9 @@ public class FigureIdentifier {
 				}
 				break;
 			}
-			if (i == 8)
+			if (i >= 4)
 				System.out.println("Erreur : données non valide ");
+			i = i + 2;
 		}
 
 	}
