@@ -1,25 +1,25 @@
-package App;
+package appJS;
 
 public class Point {
 
-	//data recieve of balle
+	//data recieve of balles
 	private String dataRec;
 	
 	/**
-	 * valeur du gyroscope
+	 * Gyroscope value
 	 * */
 	private int x;
 	private int y;
 	private int z;
 	
 	/**
-	 * valeur de l'accélerometre
+	 * Value of the accelerometer
 	 * */
 	private int a;
 	private int b;
 	private int c;
 	
-	//identifiant de la balle
+	//ID of the ball
 	private String idBall;
 	
 	/**
@@ -121,7 +121,7 @@ public class Point {
 	}
 	
 	/**
-	 * cut of data for build data of Point obje
+	 * cut of data for build data of Point objet
 	 * */
 	public void parseDataRec(){
 		
