@@ -17,8 +17,11 @@ import gnu.io.SerialPortEventListener;
 
 public class ConnectSerialPort implements SerialPortEventListener{
 	
+	//data receive
+	public String dataRec;
+	
 	// Seial port 
-	SerialPort serialPort;
+	private SerialPort serialPort;
 			
 	// Streams 
 	private InputStream serialIn;
@@ -50,11 +53,8 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	public void serialEvent(SerialPortEvent arg0) {
 		// TODO Auto-generated method stub
 		try {
-			String line = serialReader.readLine();
-			log("Readed from serial : " + line);
-			if(line.startsWith("SS:") && line.length()==14){
-				
-			}
+			dataRec = serialReader.readLine();
+			log("Readed from serial : " + dataRec);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

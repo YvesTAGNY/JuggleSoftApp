@@ -19,7 +19,7 @@ public class FigureIdentifier {
 		else
 			points_B2.add(p);
 
-		if (points_B1.size() < 4 && points_B2.size() < 4)
+		if (points_B1.size() >= 4 && points_B2.size() >= 4)
 			valuesFull = true;
 		else
 			valuesFull = false;
@@ -41,7 +41,7 @@ public class FigureIdentifier {
 		 * indice 0 = pente_B1; 1= pente_B2; 2= alpha_B1; 3= alpha_B2
 		 */
 		double[] pentesAngles = new double[4];
-		System.out.println("-"+index);
+		
 		if (points_B1.get(index).getX() < points_B1.get(index + 1).getX()) {
 			pentesAngles[0] = (points_B1.get(index + 1).getY() - points_B1.get(index).getY())
 					/ (points_B1.get(index + 1).getX() - points_B1.get(index).getX());
@@ -72,34 +72,37 @@ public class FigureIdentifier {
 	/**
 	 * Identified the figure in the first juggling movements
 	 */
-	public static void firtIndentifier() {
+	public static String firtIndentifier() {
 
 		int i = 0;
 
 		double[] pentesAngles;
 
+		//calcul pente and angle of 2 frist points of 2 balls
 		pentesAngles = calculPenteAngle(i);
 
 		while (i < 4) {
-
-			System.out.println(i);	
-			System.out.println("p1 "+pentesAngles[0]+" a1 "+pentesAngles[2]);
-			System.out.println("p2 "+pentesAngles[1]+" a2 "+pentesAngles[3]);
+			
+			ConnectSerialPort.log("Pente et angle balle 1 : "+pentesAngles[0]+" ||| "+pentesAngles[2]);
+			ConnectSerialPort.log("Pente et angle balle 1 : "+pentesAngles[1]+" ||| "+pentesAngles[3]);
 			
 			if (Math.abs(pentesAngles[2]) < (double) 20 || Math.abs(pentesAngles[3]) < (double) 20) {
+				//calcul pente and angle of 3rd 4th points of 2 balls
 				pentesAngles = calculPenteAngle(i);
 			} 
 			else {
 				if ((pentesAngles[0] < 0 && pentesAngles[1] > 0) || (pentesAngles[0] > 0 && pentesAngles[1] < 0)) {
-					System.out.println("c'est un croisé");
+					ConnectSerialPort.log("La figure de jonglage est un CROISE");
+					return CONSTANTES.ROUGE;
 				} else {
-					System.out.println("c'est un cercle");
+					ConnectSerialPort.log("La figure de jonglage est un CERCLE");
+					return CONSTANTES.BLEU;
 				}
-				break;
 			}
 			if (i >= 4)
-				System.out.println("Erreur : données non valides ");
+				ConnectSerialPort.log("Erreur : données non valides ");
 			i = i + 2;
 		}
+		return null;
 	}
 }

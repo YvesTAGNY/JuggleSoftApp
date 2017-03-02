@@ -4,5 +4,14 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="C:/Users/TAGNY/.m2/repository/junit/junit/4.11/junit-4.11.jar" sourcepath="C:/Users/TAGNY/.m2/repository/junit/junit/4.11/junit-4.11-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="junit"/>
+			<attribute name="maven.artifactId" value="junit"/>
+			<attribute name="maven.version" value="4.11"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
