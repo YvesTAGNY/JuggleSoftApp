@@ -12,6 +12,6 @@ public class CONSTANTES {
 	/**
 	 * declaration of constants identifier the port to connect it
 	 * */
-	public static final String PORT = "COM7";
+	public static final String PORT = "COM9";
 	
 }

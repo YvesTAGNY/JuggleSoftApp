@@ -98,44 +98,8 @@ public class FigureIdentifier {
 				break;
 			}
 			if (i >= 4)
-				System.out.println("Erreur : données non valide ");
+				System.out.println("Erreur : données non valides ");
 			i = i + 2;
 		}
-
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		/*
-		 * int nombre_valeurs_B1 = 0; int nombre_valeurs_B2 = 0;
-		 * 
-		 * while(nombre_valeurs_B1 <= 5 && nombre_valeurs_B2 <= 5){
-		 * 
-		 * Point balle = new Point("B1_XYZ:24-36-03::ABC:09-11-14");
-		 * balle.parseDataRec();
-		 * 
-		 * if(balle.getIdBall().equals("B1")){ if(nombre_valeurs_B1 <= 5){
-		 * points_B1.add(balle); nombre_valeurs_B1++; } } else
-		 * if(balle.getIdBall().equals("B2")){ if(nombre_valeurs_B2 <= 5){
-		 * points_B2.add(balle); nombre_valeurs_B2++; }
-		 * 
-		 * }
-		 * 
-		 * } for(int i=1; i<5;i++){ double pente_B1 = (points_B1.get(i).getY() -
-		 * points_B1.get(i-1).getY()) / (points_B1.get(i).getX() -
-		 * points_B1.get(i-1).getX()); double pente_B2 =
-		 * (points_B2.get(i).getY() - points_B2.get(i-1).getY()) /
-		 * (points_B2.get(i).getX() - points_B2.get(i-1).getX());
-		 * 
-		 * double alpha_B1 = Math.atan(pente_B1); double alpha_B2 =
-		 * Math.atan(pente_B2);
-		 * 
-		 * if(alpha_B1 > (double)20 && alpha_B2 > (double)20){ //c'est un cercle
-		 * System.out.println("c'est un cercle"); } else
-		 * if((Math.abs(alpha_B1)>20 && Math.abs(alpha_B2)>20) && (alpha_B1<0 ||
-		 * alpha_B2<0)){ //c'est un croisé System.out.println("c'est un croisé"
-		 * ); } }
-		 */
 	}
 }

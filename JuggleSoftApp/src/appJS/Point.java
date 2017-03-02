@@ -135,9 +135,9 @@ public class Point {
 		
 		String [] decoupeSPA = decoupeDP[1].split(":");
 		
-		String [] decoupeG =  decoupeSPG[1].split("-");
+		String [] decoupeG =  decoupeSPG[1].split("|");
 		
-		String [] decoupeA =  decoupeSPA[1].split("-");
+		String [] decoupeA =  decoupeSPA[1].split("|");
 		
 		x = Integer.parseInt(decoupeG[0]);
 		y = Integer.parseInt(decoupeG[1]);
