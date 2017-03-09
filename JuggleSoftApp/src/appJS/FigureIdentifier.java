@@ -43,27 +43,31 @@ public class FigureIdentifier {
 		double[] pentesAngles = new double[4];
 		
 		if (points_B1.get(index).getX() < points_B1.get(index + 1).getX()) {
-			pentesAngles[0] = (points_B1.get(index + 1).getY() - points_B1.get(index).getY())
-					/ (points_B1.get(index + 1).getX() - points_B1.get(index).getX());
-
-			pentesAngles[2] = Math.toDegrees(Math.atan(pentesAngles[0]));
+			try{
+				pentesAngles[0] = (points_B1.get(index + 1).getY() - points_B1.get(index).getY())
+						/ (points_B1.get(index + 1).getX() - points_B1.get(index).getX());
+				pentesAngles[2] = Math.toDegrees(Math.atan(pentesAngles[0]));
+			}catch (ArithmeticException e) {pentesAngles[0] = 0;}
 		} else {
+			try{
 			pentesAngles[0] = (points_B1.get(index).getY() - points_B1.get(index + 1).getY())
 					/ (points_B1.get(index).getX() - points_B1.get(index + 1).getX());
-
 			pentesAngles[2] = Math.toDegrees(Math.atan(pentesAngles[0]));
+			}catch (ArithmeticException e) {pentesAngles[0] = 0;}
 		}
 
 		if (points_B2.get(index).getX() < points_B2.get(index + 1).getX()) {
-			pentesAngles[1] = (points_B2.get(index + 1).getY() - points_B2.get(index).getY())
-					/ (points_B2.get(index + 1).getX() - points_B2.get(index).getX());
-
-			pentesAngles[3] = Math.toDegrees(Math.atan(pentesAngles[1]));
+			try{
+				pentesAngles[1] = (points_B2.get(index + 1).getY() - points_B2.get(index).getY())
+						/ (points_B2.get(index + 1).getX() - points_B2.get(index).getX());
+				pentesAngles[3] = Math.toDegrees(Math.atan(pentesAngles[1]));
+			}catch (ArithmeticException e) {pentesAngles[1] = 0;}
 		} else {
-			pentesAngles[1] = (points_B2.get(index).getY() - points_B2.get(index + 1).getY())
-					/ (points_B2.get(index).getX() - points_B2.get(index + 1).getX());
-
-			pentesAngles[3] = Math.toDegrees(Math.atan(pentesAngles[1]));
+			try{
+				pentesAngles[1] = (points_B2.get(index).getY() - points_B2.get(index + 1).getY())
+						/ (points_B2.get(index).getX() - points_B2.get(index + 1).getX());
+				pentesAngles[3] = Math.toDegrees(Math.atan(pentesAngles[1]));
+			}catch (ArithmeticException e) {pentesAngles[1] = 0;}
 		}
 
 		return pentesAngles;
@@ -84,7 +88,7 @@ public class FigureIdentifier {
 		while (i < 4) {
 			
 			ConnectSerialPort.log("Pente et angle balle 1 : "+pentesAngles[0]+" ||| "+pentesAngles[2]);
-			ConnectSerialPort.log("Pente et angle balle 1 : "+pentesAngles[1]+" ||| "+pentesAngles[3]);
+			ConnectSerialPort.log("Pente et angle balle 2 : "+pentesAngles[1]+" ||| "+pentesAngles[3]);
 			
 			if (Math.abs(pentesAngles[2]) < (double) 20 || Math.abs(pentesAngles[3]) < (double) 20) {
 				//calcul pente and angle of 3rd 4th points of 2 balls
@@ -99,10 +103,12 @@ public class FigureIdentifier {
 					return CONSTANTES.BLEU;
 				}
 			}
-			if (i >= 4)
+			if (i >= 4){
 				ConnectSerialPort.log("Erreur : données non valides ");
+				return CONSTANTES.UNKNOWN;
+			}
 			i = i + 2;
 		}
-		return null;
+		return CONSTANTES.UNKNOWN;
 	}
 }

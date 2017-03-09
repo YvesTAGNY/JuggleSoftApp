@@ -8,10 +8,11 @@ public class CONSTANTES {
 	public static final String VERTE = "V";
 	public static final String ROUGE = "R";
 	public static final String BLEU = "B";
+	public static final String UNKNOWN = "W";
 	
 	/**
 	 * declaration of constants identifier the port to connect it
 	 * */
-	public static final String PORT = "COM9";
+	public static final String PORT = "COM7";
 	
 }

@@ -18,7 +18,7 @@ import gnu.io.SerialPortEventListener;
 public class ConnectSerialPort implements SerialPortEventListener{
 	
 	//data receive
-	public String dataRec;
+	public static String dataRec;
 	
 	// Seial port 
 	private SerialPort serialPort;
@@ -27,6 +27,39 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	private InputStream serialIn;
 	private OutputStream serialOut;
 	private BufferedReader serialReader;
+
+	/*getter and setter*/
+	public SerialPort getSerialPort() {
+		return serialPort;
+	}
+
+	public void setSerialPort(SerialPort serialPort) {
+		this.serialPort = serialPort;
+	}
+
+	public InputStream getSerialIn() {
+		return serialIn;
+	}
+
+	public void setSerialIn(InputStream serialIn) {
+		this.serialIn = serialIn;
+	}
+
+	public OutputStream getSerialOut() {
+		return serialOut;
+	}
+
+	public void setSerialOut(OutputStream serialOut) {
+		this.serialOut = serialOut;
+	}
+
+	public BufferedReader getSerialReader() {
+		return serialReader;
+	}
+
+	public void setSerialReader(BufferedReader serialReader) {
+		this.serialReader = serialReader;
+	}
 
 	/**
 	 * Open the serial port
@@ -45,7 +78,23 @@ public class ConnectSerialPort implements SerialPortEventListener{
         serialPort.notifyOnDataAvailable(true);
         
 	}
-	
+	/**
+	 * @Override whith the port open in parameter
+	 * */
+	public void OpenPort(String portOpen) throws Exception{
+		
+		CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(portOpen); 
+        CommPort commPort = port.open(this.getClass().getName(),2000);
+        serialPort = (SerialPort) commPort;
+        serialPort.setSerialPortParams(/*115200*/9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+		serialIn = serialPort.getInputStream();
+		serialOut = serialPort.getOutputStream();
+		serialReader = new BufferedReader( new InputStreamReader(serialIn) );
+        serialPort.addEventListener(this);
+        serialPort.notifyOnDataAvailable(true);
+        
+	}
+
 	/**
 	 * Each data send by arduino is taken here
 	 */
@@ -54,9 +103,9 @@ public class ConnectSerialPort implements SerialPortEventListener{
 		// TODO Auto-generated method stub
 		try {
 			dataRec = serialReader.readLine();
-			log("Readed from serial : " + dataRec);
+			//log("Readed from serial : " + dataRec);
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}
 	}
 	

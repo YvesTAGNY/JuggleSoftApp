@@ -1,6 +1,6 @@
 /*Constantes identifiant les LED*/
-#define LED_B     9
-#define LED_R     10
+#define LED_B     10
+#define LED_R     9
 
 /*Buffeur de reception de données*/
 char dataRecvL[2];
