@@ -68,6 +68,12 @@ public class Courbe extends JPanel{
 				int x2=(int)p2.getX();
 				int y2=(int)p2.getY();
  
+				g.setColor(Color.BLACK);
+				g.drawLine(0, 10, x2, 10);
+				
+				g.setColor(Color.BLACK);
+				g.drawLine(10, 0, 10, y2);
+				
 				g.setColor(Color.BLUE);
 				g.drawLine(x1, y1, x2, y2);
  

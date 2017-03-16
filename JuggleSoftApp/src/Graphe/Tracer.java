@@ -2,13 +2,8 @@ package Graphe;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Enumeration;
 
 import javax.swing.JFrame;
-
-import appJS.ConnectSerialPort;
-import appJS.Point;
-import gnu.io.CommPortIdentifier;
 
 public class Tracer extends JFrame {
 
