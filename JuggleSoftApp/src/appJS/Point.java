@@ -26,7 +26,7 @@ public class Point {
 	 * Constructeurs
 	 * */
 	
-	Point(){}
+	public Point(){}
 	
 	Point(String dataRec){
 		this.dataRec = dataRec;
