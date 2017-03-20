@@ -2,8 +2,13 @@ package Graphe;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Enumeration;
 
 import javax.swing.JFrame;
+
+import appJS.ConnectSerialPort;
+import appJS.Point;
+import gnu.io.CommPortIdentifier;
 
 public class Tracer extends JFrame {
 
@@ -15,17 +20,27 @@ public class Tracer extends JFrame {
 
 		this.courbe = new Courbe();
 
-		 this.courbe.ajouterCoord(new Coordonees(5, 6681.8929));
-		 this.courbe.ajouterCoord(new Coordonees(10, 11834.3456));
-		 this.courbe.ajouterCoord(new Coordonees(20, 37059.7267));
-		 this.courbe.ajouterCoord(new Coordonees(30, 32249.5167));
-		 this.courbe.ajouterCoord(new Coordonees(40, 11503.6712));
-		 this.courbe.ajouterCoord(new Coordonees(50, 7485.3936));
-		 this.courbe.ajouterCoord(new Coordonees(60, 5720.6952));
-		 this.courbe.ajouterCoord(new Coordonees(70, 4762.9483));
-		 this.courbe.ajouterCoord(new Coordonees(80, 4207.3249));
-		 this.courbe.ajouterCoord(new Coordonees(90, 3880.5546));
+//		 this.courbe.ajouterCoord(new Coordonees(5, 6681.8929));
+//		 this.courbe.ajouterCoord(new Coordonees(10, 11834.3456));
+//		 this.courbe.ajouterCoord(new Coordonees(20, 37059.7267));
+//		 this.courbe.ajouterCoord(new Coordonees(30, 32249.5167));
+//		 this.courbe.ajouterCoord(new Coordonees(40, 11503.6712));
+//		 this.courbe.ajouterCoord(new Coordonees(50, 7485.3936));
+//		 this.courbe.ajouterCoord(new Coordonees(60, 5720.6952));
+//		 this.courbe.ajouterCoord(new Coordonees(70, 4762.9483));
+//		 this.courbe.ajouterCoord(new Coordonees(80, 4207.3249));
+//		 this.courbe.ajouterCoord(new Coordonees(90, 3880.5546));
 
+//		 this.courbe.ajouterCoord(new Coordonees(5,50,100, 6681.8929));
+//		 this.courbe.ajouterCoord(new Coordonees(10,10,0, 11834.3456));
+//		 this.courbe.ajouterCoord(new Coordonees(20,5,0, 37059.7267));
+//		 this.courbe.ajouterCoord(new Coordonees(30,20,0, 32249.5167));
+//		 this.courbe.ajouterCoord(new Coordonees(40,50,0, 11503.6712));
+//		 this.courbe.ajouterCoord(new Coordonees(50,30,0, 7485.3936));
+//		 this.courbe.ajouterCoord(new Coordonees(60,40,0, 5720.6952));
+//		 this.courbe.ajouterCoord(new Coordonees(70,75,0, 4762.9483));
+//		 this.courbe.ajouterCoord(new Coordonees(80,33,0, 4207.3249));
+//		 this.courbe.ajouterCoord(new Coordonees(90, 50,0,3880.5546));
 	}
 
 	public void printCourbe() {
@@ -42,7 +57,7 @@ public class Tracer extends JFrame {
 
 	public static void main(String[] args) throws Exception {
 
-		/*System.out.println("Program started");
+		System.out.println("Program started");
 
 		// declaration of port identifier
 		CommPortIdentifier port = null;
@@ -60,27 +75,30 @@ public class Tracer extends JFrame {
 		// "creation of the port"
 		ConnectSerialPort csp = new ConnectSerialPort();
 		// Establishing connection to port
-		csp.OpenPort(port.getName());*/
+		csp.OpenPort(port.getName());
 
 		Tracer c = new Tracer();
 
 		int temps = 0;
 
-		/*while (true) {
+		while (true) {
 			Point point = new Point();
 			if (ConnectSerialPort.dataRec != null) {
 				point.setDataRec(ConnectSerialPort.dataRec);
 				point.parseDataRec();
 				ConnectSerialPort.log("dataRec : " + ConnectSerialPort.dataRec);
 
-				Coordonees coord = new Coordonees(temps, point.getX());
+				Coordonees coord =  new Coordonees(point.getX(), point.getY(), point.getZ(), temps);
+				//Coordonees coord =  new Coordonees(point.getX(), temps);
+				//Coordonees coord =  new Coordonees(point.getY(), temps);
+				//Coordonees coord =  new Coordonees(point.getZ(), temps);
 				c.courbe.ajouterCoord(coord);
 			}
 			temps = temps + 10;
-			Thread.sleep(500);*/
+			Thread.sleep(500);
 
 			c.printCourbe();
-		//}
+		}
 
 	}
 }

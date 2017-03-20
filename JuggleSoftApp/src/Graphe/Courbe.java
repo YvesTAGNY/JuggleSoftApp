@@ -22,15 +22,18 @@ public class Courbe extends JPanel{
 	public Courbe(){}
  
 	public void ajouterCoord(Coordonees p){
-		if(p.getX()<this.xMin)
-			this.xMin=p.getX();
-		else if(p.getX()>this.xMax)
-			this.xMax=p.getX();
+		double max = Math.max(Math.max(p.getX(), p.getY()),p.getZ());
+		double min = Math.min(Math.min(p.getX(), p.getY()),p.getZ());
+		
+		if(p.getT()<this.xMin)
+			this.xMin=p.getT();
+		else if(p.getT()>this.xMax)
+			this.xMax=p.getT();
  
-		if(p.getY()<this.yMin)
-			this.yMin=p.getY();
-		else if(p.getY()>this.yMax)
-			this.yMax=p.getY();
+		if(min<this.yMin)
+			this.yMin=min;
+		else if(max>this.yMax)
+			this.yMax=max;
  
 		this.listeCoord.add(p);
  
@@ -65,28 +68,57 @@ public class Courbe extends JPanel{
 				Coordonees p2=this.convertirPointSurReferenciel(this.listeCoord.get(i+1));
 				int x1=(int)p1.getX();
 				int y1=(int)p1.getY();
+				int z1=(int)p1.getZ();
+				int t1=(int)p1.getT();
 				int x2=(int)p2.getX();
 				int y2=(int)p2.getY();
+				int z2=(int)p2.getZ();
+				int t2=(int)p2.getT();
  
 				g.setColor(Color.BLACK);
-				g.drawLine(0, 10, x2, 10);
+				g.drawLine(10, 10, t2, 10);
 				
 				g.setColor(Color.BLACK);
-				g.drawLine(10, 0, 10, y2);
+				g.drawLine(10, 10, 10, Math.max(Math.max(x2, y2),z2));
 				
+				//z
+				g.setColor(Color.GRAY);
+				g.drawLine(t1, z1, t2, z2);
+ 
+				g.setColor(Color.CYAN);
+				g.drawLine(t1-3, z1, t1+3, z1);
+				g.drawLine(t1, z1-3, t1, z1+3);
+				
+				//y
+				g.setColor(Color.GREEN);
+				g.drawLine(t1, y1, t2, y2);
+ 
+				g.setColor(Color.ORANGE);
+				g.drawLine(t1-3, y1, t1+3, y1);
+				g.drawLine(t1, y1-3, t1, y1+3);
+				
+				//x
 				g.setColor(Color.BLUE);
-				g.drawLine(x1, y1, x2, y2);
+				g.drawLine(t1, x1, t2, x2);
  
 				g.setColor(Color.RED);
-				g.drawLine(x1-3, y1, x1+3, y1);
-				g.drawLine(x1, y1-3, x1, y1+3);
+				g.drawLine(t1-3, x1, t1+3, x1);
+				g.drawLine(t1, x1-3, t1, x1+3);
 			}	
  
 			Coordonees p1=this.convertirPointSurReferenciel(this.listeCoord.get(this.listeCoord.size()-1));
 			int x1=(int)p1.getX();
 			int y1=(int)p1.getY();
-			g.drawLine(x1-4, y1, x1+4, y1);
-			g.drawLine(x1, y1-4, x1, y1+4);
+			int z1=(int)p1.getZ();
+			int t1=(int)p1.getT();
+			g.drawLine(t1-4, x1, t1+4, x1);
+			g.drawLine(t1, x1-4, t1, x1+4);
+			
+			g.drawLine(t1-4, y1, t1+4, y1);
+			g.drawLine(t1, y1-4, t1, y1+4);
+			
+			g.drawLine(t1-4, z1, t1+4, z1);
+			g.drawLine(t1, z1-4, t1, z1+4);
 		}		
 	}
  
@@ -97,14 +129,20 @@ public class Courbe extends JPanel{
 		double rapportX=this.largeur/amplitudeX;
 		double rapportY=this.hauteur/amplitudeY;
  
-		double x=(p.getX()-this.xMin)*rapportX;
+		double x=(p.getX()-this.yMin)*rapportY;
 		double y=(p.getY()-this.yMin)*rapportY;
+		double z=(p.getZ()-this.yMin)*rapportY;
+		double t=(p.getT()-this.xMin)*rapportX;
  
+		x=this.hauteur-x;
 		y=this.hauteur-y;
+		z=this.hauteur-z;
  
-		x=x+this.left;
+		x=x+this.top;
 		y=y+this.top;
+		z=z+this.top;
+		t=t+this.left;
  
-		return new Coordonees(x, y);
+		return new Coordonees(x,y,z,t);
 	}	
 }
