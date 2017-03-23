@@ -8,10 +8,13 @@ void setup() {
 }
 
 void getInputs(){   
-    sprintf(coordonnee, "XYZ:%d-%d-%d",
+    sprintf(coordonnee, "B1_XYZ:%d-%d-%d::ABC:%d-%d-%d",
         x,
         y,
-        z
+        z,
+        a,
+        b,
+        c
     );
 }
 

@@ -1,4 +1,4 @@
-package App;
+package appJS;
 
 public class CONSTANTES {
 
@@ -8,6 +8,7 @@ public class CONSTANTES {
 	public static final String VERTE = "V";
 	public static final String ROUGE = "R";
 	public static final String BLEU = "B";
+	public static final String UNKNOWN = "W";
 	
 	/**
 	 * declaration of constants identifier the port to connect it

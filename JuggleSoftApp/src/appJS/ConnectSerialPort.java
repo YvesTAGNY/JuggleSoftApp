@@ -1,4 +1,4 @@
-package App;
+package appJS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,13 +17,49 @@ import gnu.io.SerialPortEventListener;
 
 public class ConnectSerialPort implements SerialPortEventListener{
 	
+	//data receive
+	public static String dataRec;
+	
 	// Seial port 
-	SerialPort serialPort;
+	private SerialPort serialPort;
 			
 	// Streams 
 	private InputStream serialIn;
 	private OutputStream serialOut;
 	private BufferedReader serialReader;
+
+	/*getter and setter*/
+	public SerialPort getSerialPort() {
+		return serialPort;
+	}
+
+	public void setSerialPort(SerialPort serialPort) {
+		this.serialPort = serialPort;
+	}
+
+	public InputStream getSerialIn() {
+		return serialIn;
+	}
+
+	public void setSerialIn(InputStream serialIn) {
+		this.serialIn = serialIn;
+	}
+
+	public OutputStream getSerialOut() {
+		return serialOut;
+	}
+
+	public void setSerialOut(OutputStream serialOut) {
+		this.serialOut = serialOut;
+	}
+
+	public BufferedReader getSerialReader() {
+		return serialReader;
+	}
+
+	public void setSerialReader(BufferedReader serialReader) {
+		this.serialReader = serialReader;
+	}
 
 	/**
 	 * Open the serial port
@@ -42,7 +78,23 @@ public class ConnectSerialPort implements SerialPortEventListener{
         serialPort.notifyOnDataAvailable(true);
         
 	}
-	
+	/**
+	 * @Override whith the port open in parameter
+	 * */
+	public void OpenPort(String portOpen) throws Exception{
+		
+		CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(portOpen); 
+        CommPort commPort = port.open(this.getClass().getName(),2000);
+        serialPort = (SerialPort) commPort;
+        serialPort.setSerialPortParams(/*115200*/9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+		serialIn = serialPort.getInputStream();
+		serialOut = serialPort.getOutputStream();
+		serialReader = new BufferedReader( new InputStreamReader(serialIn) );
+        serialPort.addEventListener(this);
+        serialPort.notifyOnDataAvailable(true);
+        
+	}
+
 	/**
 	 * Each data send by arduino is taken here
 	 */
@@ -50,13 +102,10 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	public void serialEvent(SerialPortEvent arg0) {
 		// TODO Auto-generated method stub
 		try {
-			String line = serialReader.readLine();
-			log("Readed from serial : " + line);
-			if(line.startsWith("SS:") && line.length()==14){
-				
-			}
+			dataRec = serialReader.readLine();
+			//log("Readed from serial : " + dataRec);
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}
 	}
 	
@@ -79,40 +128,5 @@ public class ConnectSerialPort implements SerialPortEventListener{
 	public static void log(String line){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println( sdf.format(new Date()) + " --> " + line);
-	}
-	
-	/**
-	 * Main
-	 * @throws Exception 
-	 * */
-	public static void main(String[] args) throws Exception {
-		System.out.println("Program started");
-		
-		//declaration of port identifier
-	    CommPortIdentifier port;
-	    
-	    //declaration of iterator of port
-	    Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
-	    
-	    while (ports.hasMoreElements()) {
-	    	port = (CommPortIdentifier) ports.nextElement();
-	     	if(port.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-	     		log("Port " + port.getName());
-	    	}
-	    }
-
-	    ConnectSerialPort sp = new ConnectSerialPort();
-	    sp.OpenPort();
-	    
-	    /*while(true){
-	    	log("Send " + CONSTANTES.BLEU);
-		    sp.serialOut.write(CONSTANTES.BLEU.getBytes());
-		    Thread.sleep(1000);
-		    log("Send " + CONSTANTES.ROUGE);
-		    sp.serialOut.write(CONSTANTES.ROUGE.getBytes());
-		    Thread.sleep(1000);
-	    }*/
-	    
-		//System.out.println("Finished successfully");
 	}
 }
