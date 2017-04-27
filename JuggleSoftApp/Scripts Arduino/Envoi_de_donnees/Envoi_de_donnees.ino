@@ -1,7 +1,7 @@
 
 char coordonnee[20];
 char oldCoordonnee[20];
-long x,y,z;
+long x,y,z,a,b,c;
 
 void setup() {
   Serial.begin(9600);

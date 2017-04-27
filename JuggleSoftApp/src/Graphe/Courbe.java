@@ -104,21 +104,24 @@ public class Courbe extends JPanel{
 				g.setColor(Color.RED);
 				g.drawLine(t1-3, x1, t1+3, x1);
 				g.drawLine(t1, x1-3, t1, x1+3);
-			}	
- 
-			Coordonees p1=this.convertirPointSurReferenciel(this.listeCoord.get(this.listeCoord.size()-1));
-			int x1=(int)p1.getX();
-			int y1=(int)p1.getY();
-			int z1=(int)p1.getZ();
-			int t1=(int)p1.getT();
-			g.drawLine(t1-4, x1, t1+4, x1);
-			g.drawLine(t1, x1-4, t1, x1+4);
+			}
+			try{
+				Coordonees p1=this.convertirPointSurReferenciel(this.listeCoord.get(this.listeCoord.size()-1));
+				int x1=(int)p1.getX();
+				int y1=(int)p1.getY();
+				int z1=(int)p1.getZ();
+				int t1=(int)p1.getT();
+				g.drawLine(t1-4, x1, t1+4, x1);
+				g.drawLine(t1, x1-4, t1, x1+4);
+				
+				g.drawLine(t1-4, y1, t1+4, y1);
+				g.drawLine(t1, y1-4, t1, y1+4);
+				
+				g.drawLine(t1-4, z1, t1+4, z1);
+				g.drawLine(t1, z1-4, t1, z1+4);
 			
-			g.drawLine(t1-4, y1, t1+4, y1);
-			g.drawLine(t1, y1-4, t1, y1+4);
-			
-			g.drawLine(t1-4, z1, t1+4, z1);
-			g.drawLine(t1, z1-4, t1, z1+4);
+			}catch(ArrayIndexOutOfBoundsException e1){}
+			catch(NullPointerException e2){}
 		}		
 	}
  
