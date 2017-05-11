@@ -34,14 +34,14 @@ public class FigureIdentifierTest {
 		init();
 		for(Point p : points){
 			p.parseDataRec();
-			if(FigureIdentifier.triPoint(p)){
+			if(FigureIdentifierMP.triPoint(p)){
 				break;
 			}
 		}
-		System.out.println("B1 : " +  FigureIdentifier.points_B1);
-		System.out.println("B2 : " +  FigureIdentifier.points_B2);
-		System.out.println("taile B1 : " +  FigureIdentifier.points_B1.size() + " taile B2 : " +  FigureIdentifier.points_B2.size());
-		FigureIdentifier.firtIndentifier();
+		System.out.println("B1 : " +  FigureIdentifierMP.points_B1);
+		System.out.println("B2 : " +  FigureIdentifierMP.points_B2);
+		System.out.println("taile B1 : " +  FigureIdentifierMP.points_B1.size() + " taile B2 : " +  FigureIdentifierMP.points_B2.size());
+		FigureIdentifierMP.firtIndentifier();
 	}
 
 }

@@ -36,19 +36,22 @@ public class AppJS {
 		//"creation of the port"
 		ConnectSerialPort csp = new ConnectSerialPort();
 		//Establishing connection to port
-		csp.OpenPort(port.getName());
+		csp.OpenPort();
+		//csp.OpenPort(port.getName());
 
-		/*
-		 * //test d'envoi des couleur while(true){ ConnectSerialPort.log("Send "
-		 * + CONSTANTES.BLEU);
-		 * sp.getSerialOut().write(CONSTANTES.BLEU.getBytes());
-		 * Thread.sleep(1000); ConnectSerialPort.log("Send " +
-		 * CONSTANTES.ROUGE);
-		 * sp.getSerialOut().write(CONSTANTES.ROUGE.getBytes());
-		 * Thread.sleep(1000); }
-		 */
 		
-		/**make aquisition traitement and result*/
+		  /**test d'envoi des couleurs*/
+		/*while(true){ 
+			ConnectSerialPort.log("Send " + CONSTANTES.BLEU);
+			csp.getSerialOut().write(CONSTANTES.BLEU.getBytes());
+			Thread.sleep(1000); 
+			ConnectSerialPort.log("Send " + CONSTANTES.ROUGE);
+			csp.getSerialOut().write(CONSTANTES.ROUGE.getBytes());
+			Thread.sleep(1000); 
+		}*/
+		 
+		
+		/**make aquisition traitement and result avec MP*/
 		while(true){
 			//Recovering of 12 points : 1 every 1 second
 			while (points.size() < 8) {
@@ -64,15 +67,15 @@ public class AppJS {
 			
 			//Sorting points
 			for (Point p : points) {
-				if (FigureIdentifier.triPoint(p)) {
+				if (FigureIdentifierMP.triPoint(p)) {
 					break;
 				}
 			}
 	
 			//Identification as a function of slope values
 			System.out.println();
-			System.out.println("taile B1 : " + FigureIdentifier.points_B1.size() + " taile B2 : " + FigureIdentifier.points_B2.size());
-			coulorLEDtoLight = FigureIdentifier.firtIndentifier();
+			System.out.println("taile B1 : " + FigureIdentifierMP.points_B1.size() + " taile B2 : " + FigureIdentifierMP.points_B2.size());
+			coulorLEDtoLight = FigureIdentifierMP.firtIndentifier();
 			csp.getSerialOut().write(coulorLEDtoLight.getBytes());
 			ConnectSerialPort.log("Send coulorLEDtoLight : " + coulorLEDtoLight);
 			
@@ -82,7 +85,7 @@ public class AppJS {
 			
 			Thread.sleep(10000);
 			points.clear();
-			FigureIdentifier.resetPoints();
+			FigureIdentifierMP.resetPoints();
 			
 			System.out.println();
 			System.out.println("New calcul");
