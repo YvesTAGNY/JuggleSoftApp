@@ -52,7 +52,7 @@ public class AppJS {
 		 
 		
 		/**make aquisition traitement and result avec MP*/
-		while(true){
+		/*while(true){
 			//Recovering of 12 points : 1 every 1 second
 			while (points.size() < 8) {
 				Point point = new Point();
@@ -89,7 +89,44 @@ public class AppJS {
 			
 			System.out.println();
 			System.out.println("New calcul");
-		}
+		}*/
+		
+		/**make aquisition traitement and display zero*/
+        while(true){
+            //Recovering of 12 points : 1 every 1 second
+            while (points.size() < 8) {
+                Point point = new Point();
+                if (ConnectSerialPort.dataRec != null) {
+                    point.setDataRec(ConnectSerialPort.dataRec);
+                    point.parseDataRec();
+                    ConnectSerialPort.log("dataRec : " + ConnectSerialPort.dataRec);
+                    points.add(point);
+                }
+                Thread.sleep(500);
+            }
+
+            //Sorting points
+            for (Point p : points) {
+                if (FigureIdentifierMZ.triPoint(p)) {
+                    break;
+                }
+            }
+            
+            FigureIdentifierMZ.identifierZero();
+
+            System.out.println("zero balle 1: "+ FigureIdentifierMZ.zeroballe1+" zero balle 2: "+FigureIdentifierMZ.zeroballe2);
+            //waiting 10s after a new calcul
+            System.out.println();
+            System.out.println("Waiting 2.5 seconds ...");
+
+            Thread.sleep(2500);
+            points.clear();
+            FigureIdentifierMZ.resetPoints();
+
+            System.out.println();
+            System.out.println("New calcul");
+        }
+        
 		// System.out.println("Finished successfully");
 	}
 
