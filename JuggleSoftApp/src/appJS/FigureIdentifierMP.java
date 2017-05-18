@@ -2,7 +2,7 @@ package appJS;
 
 import java.util.ArrayList;
 
-public class FigureIdentifier {
+public class FigureIdentifierMP /*MP=Méthode des Pentes*/ {
 
 	public static ArrayList<Point> points_B1 = new ArrayList<Point>();
 	public static ArrayList<Point> points_B2 = new ArrayList<Point>();
