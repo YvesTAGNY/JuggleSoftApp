@@ -16,7 +16,6 @@ public class AppJS {
 	 * 
 	 * @throws Exception
 	 */
-
 	public static void main(String[] args) throws Exception {
 		System.out.println("Program started");
 
@@ -36,8 +35,8 @@ public class AppJS {
 		//"creation of the port"
 		ConnectSerialPort csp = new ConnectSerialPort();
 		//Establishing connection to port
-		csp.OpenPort();
-		//csp.OpenPort(port.getName());
+		//csp.OpenPort();
+		csp.OpenPort(port.getName());
 
 		
 		  /**test d'envoi des couleurs*/
@@ -51,7 +50,8 @@ public class AppJS {
 		}*/
 		 
 		
-		/**make aquisition traitement and result avec MP*/
+		/**make aquisition traitement and r
+		 * esult avec MP*/
 		/*while(true){
 			//Recovering of 12 points : 1 every 1 second
 			while (points.size() < 8) {
