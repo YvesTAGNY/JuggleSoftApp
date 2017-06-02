@@ -15,4 +15,6 @@ public class CONSTANTES {
 	 * */
 	public static final String PORT = "COM10";
 	
+	public static final int SEUIL = 500;
+	
 }

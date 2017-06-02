@@ -1,23 +1,14 @@
 package Graphe;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Enumeration;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import appJS.ConnectSerialPort;
-import appJS.Point;
-import gnu.io.CommPortIdentifier;
-import javafx.scene.layout.Pane;
 
 public class Tracer extends JFrame {
 

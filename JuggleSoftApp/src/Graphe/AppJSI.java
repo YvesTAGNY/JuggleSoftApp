@@ -57,7 +57,10 @@ public class AppJSI {
 				Coordonees coord2 =  new Coordonees(point.getA(), point.getB(), point.getC(), temps);
 				
 				modAcc = (int) Math.sqrt(Math.pow(point.getA(), 2) + Math.pow(point.getB(), 2) + Math.pow(point.getC(), 2));
-				Coordonees coord3 =  new Coordonees(modAcc, temps);
+				
+				Coordonees coord3 =  new Coordonees(modAcc,1500,0, temps);
+				
+				FigureIdentifierMZ2.calculZero(point);
 				
 				//Coordonees coord =  new Coordonees(point.getX(), temps);
 				//Coordonees coord =  new Coordonees(point.getY(), temps);
@@ -68,7 +71,7 @@ public class AppJSI {
 				c.courbeModAcc.ajouterCoord(coord3);
 			}
 			temps = temps + 10;
-			Thread.sleep(500);
+			Thread.sleep(20);
 
 			c.printCourbe();
 		}
