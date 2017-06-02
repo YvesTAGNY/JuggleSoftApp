@@ -23,7 +23,7 @@ public class FigureIdentifierMZ2 {
     public static boolean balle2EnAir = false;
     public static boolean valuesFull = false;
     
-    public static String colorBalles ;
+    public static String colorBalles = CONSTANTES.UNKNOWN;
 
     /**
      * Sorting of points according to the ball

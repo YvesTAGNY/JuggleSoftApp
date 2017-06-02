@@ -62,6 +62,10 @@ public class AppJSI {
 				
 				FigureIdentifierMZ2.calculZero(point);
 				
+				//envoi de la couleur au balle
+				ConnectSerialPort.log("Send " + FigureIdentifierMZ2.colorBalles);
+				csp.getSerialOut().write(FigureIdentifierMZ2.colorBalles.getBytes());
+				
 				//Coordonees coord =  new Coordonees(point.getX(), temps);
 				//Coordonees coord =  new Coordonees(point.getY(), temps);
 				//Coordonees coord =  new Coordonees(point.getZ(), temps);
