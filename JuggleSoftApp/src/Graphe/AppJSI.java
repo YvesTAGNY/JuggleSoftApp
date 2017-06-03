@@ -66,15 +66,20 @@ public class AppJSI {
 				ConnectSerialPort.log("Send " + FigureIdentifierMZ2.colorBalles);
 				csp.getSerialOut().write(FigureIdentifierMZ2.colorBalles.getBytes());
 				
-				//Coordonees coord =  new Coordonees(point.getX(), temps);
-				//Coordonees coord =  new Coordonees(point.getY(), temps);
-				//Coordonees coord =  new Coordonees(point.getZ(), temps);
-				
+				//LED numérique
+				if(FigureIdentifierMZ2.colorBalles == CONSTANTES.ROUGE)
+					c.couleurBalle = 0;
+				else
+					c.couleurBalle = 1;
+
+				//Tracer des courbes
 				c.courbeAcc.ajouterCoord(coord1);
 				c.courbeGyr.ajouterCoord(coord2);
 				c.courbeModAcc.ajouterCoord(coord3);
 			}
 			temps = temps + 10;
+			
+			//période d'echantionnage
 			Thread.sleep(20);
 
 			c.printCourbe();

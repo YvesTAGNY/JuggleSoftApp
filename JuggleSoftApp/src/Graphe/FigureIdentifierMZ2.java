@@ -66,9 +66,9 @@ public class FigureIdentifierMZ2 {
     	
     	int v11, v12, v13, v21, v22, v23;
     	
-    	v11 = Math.abs(t_B1EnAir.get(0) - t_B1EnAir.get(1));
-    	v12 = Math.abs(t_B1EnAir.get(0) - t_B1EnAir.get(2));
-    	v13 = Math.abs(t_B1EnAir.get(1) - t_B1EnAir.get(2));
+    	//v11 = Math.abs(t_B1EnAir.get(0) - t_B1EnAir.get(1));
+    	//v12 = Math.abs(t_B1EnAir.get(0) - t_B1EnAir.get(2));
+    	//ov13 = Math.abs(t_B1EnAir.get(1) - t_B1EnAir.get(2));
     	
     	v21 = Math.abs(t_B2EnAir.get(0) - t_B2EnAir.get(1));
     	v22 = Math.abs(t_B2EnAir.get(0) - t_B2EnAir.get(2));

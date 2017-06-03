@@ -62,10 +62,14 @@ public class Tracer extends JFrame {
 		
 		this.infos.add(this.l4);
 		
-		if(couleurBalle == 0)
+		if(couleurBalle == 0){
 			this.infos.add(this.br);
-		else
+			this.infos.remove(this.bb);
+		}
+		else{
 			this.infos.add(this.bb);
+			this.infos.remove(this.br);
+		}
 		
 		this.getContentPane().add(this.infos);
 		this.setVisible(true);
