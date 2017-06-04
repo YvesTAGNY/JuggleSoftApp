@@ -1,23 +1,14 @@
 package Graphe;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Enumeration;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import appJS.ConnectSerialPort;
-import appJS.Point;
-import gnu.io.CommPortIdentifier;
-import javafx.scene.layout.Pane;
 
 public class Tracer extends JFrame {
 
@@ -71,10 +62,14 @@ public class Tracer extends JFrame {
 		
 		this.infos.add(this.l4);
 		
-		if(couleurBalle == 0)
+		if(couleurBalle == 0){
 			this.infos.add(this.br);
-		else
+			this.infos.remove(this.bb);
+		}
+		else{
 			this.infos.add(this.bb);
+			this.infos.remove(this.br);
+		}
 		
 		this.getContentPane().add(this.infos);
 		this.setVisible(true);

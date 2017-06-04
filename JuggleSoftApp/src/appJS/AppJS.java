@@ -102,7 +102,7 @@ public class AppJS {
                     ConnectSerialPort.log("dataRec : " + ConnectSerialPort.dataRec);
                     points.add(point);
                 }
-                Thread.sleep(500);
+                Thread.sleep(40);
             }
 
             //Sorting points

@@ -57,18 +57,30 @@ public class AppJSI {
 				Coordonees coord2 =  new Coordonees(point.getA(), point.getB(), point.getC(), temps);
 				
 				modAcc = (int) Math.sqrt(Math.pow(point.getA(), 2) + Math.pow(point.getB(), 2) + Math.pow(point.getC(), 2));
-				Coordonees coord3 =  new Coordonees(modAcc, temps);
 				
-				//Coordonees coord =  new Coordonees(point.getX(), temps);
-				//Coordonees coord =  new Coordonees(point.getY(), temps);
-				//Coordonees coord =  new Coordonees(point.getZ(), temps);
+				Coordonees coord3 =  new Coordonees(modAcc,1500,0, temps);
 				
+				FigureIdentifierMZ2.calculZero(point);
+				
+				//envoi de la couleur au balle
+				ConnectSerialPort.log("Send " + FigureIdentifierMZ2.colorBalles);
+				csp.getSerialOut().write(FigureIdentifierMZ2.colorBalles.getBytes());
+				
+				//LED numérique
+				if(FigureIdentifierMZ2.colorBalles == CONSTANTES.ROUGE)
+					c.couleurBalle = 0;
+				else
+					c.couleurBalle = 1;
+
+				//Tracer des courbes
 				c.courbeAcc.ajouterCoord(coord1);
 				c.courbeGyr.ajouterCoord(coord2);
 				c.courbeModAcc.ajouterCoord(coord3);
 			}
 			temps = temps + 10;
-			Thread.sleep(500);
+			
+			//période d'echantionnage
+			Thread.sleep(20);
 
 			c.printCourbe();
 		}

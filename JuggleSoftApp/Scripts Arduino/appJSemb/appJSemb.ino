@@ -61,7 +61,7 @@ void setup()
 
 //define format data
 void getInputs(){   
-    sprintf(coordonnee, "B1_XYZ:%dD%dD%d::ABC:%dD%dD%d",
+    sprintf(coordonnee,"B2_XYZ:%dD%dD%d::ABC:%dD%dD%d",
         x,
         y,
         z,
@@ -138,7 +138,7 @@ void loop()
      strcpy(oldCoordonnee, coordonnee);
      Serial.println(coordonnee);
   }
-  delay(500);
+  delay(20);
 
   /*reception of data and ignition of the led*/
   if(Serial.available()){
