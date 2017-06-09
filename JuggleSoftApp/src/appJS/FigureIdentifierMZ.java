@@ -24,7 +24,7 @@ public class FigureIdentifierMZ /*MZ=Méthode des zèros*/ {
         else
             points_B2.add(p);
 
-        if (points_B1.size() >= 4 && points_B2.size() >= 4)
+        if (points_B1.size() >= 20 && points_B2.size() >= 20)
             valuesFull = true;
         else
             valuesFull = false;
@@ -50,7 +50,7 @@ public class FigureIdentifierMZ /*MZ=Méthode des zèros*/ {
             System.out.println(modAcc1);
             //ConnectSerialPort.log(""+FGMZ.modAcc1);
             
-            if (modAcc1<500)
+            if (modAcc1 < CONSTANTES.SEUIL)
             {
                 zeroballe1++;
             }
@@ -60,7 +60,7 @@ public class FigureIdentifierMZ /*MZ=Méthode des zèros*/ {
             modAcc2 = (int) Math.sqrt(Math.pow(p.getA(), 2) + Math.pow(p.getB(), 2) + Math.pow(p.getC(), 2));
             System.out.println(modAcc2);
             //ConnectSerialPort.log(""+FGMZ.modAcc2);
-            if (modAcc2<500)
+            if (modAcc2 < CONSTANTES.SEUIL)
             {
                 zeroballe2++;
             }

@@ -16,6 +16,7 @@ public class FigureIdentifierMZ2 {
     static int zeroballe1 = 0;
     static int zeroballe2 = 0;
     
+    //Result of the acceleration modulus
     static int modAcc1;
     static int modAcc2;
     
@@ -26,7 +27,8 @@ public class FigureIdentifierMZ2 {
     public static String colorBalles = CONSTANTES.UNKNOWN;
 
     /**
-     * Sorting of points according to the ball
+     * Sorting of points according to the ball 
+     * and make the zèro identification
      */
     public static void calculZero(Point p) {
 
@@ -62,6 +64,8 @@ public class FigureIdentifierMZ2 {
         }
     }
     
+    /**
+     * */
     public static String IdendifierZero2() {
     	
     	int v11, v12, v13, v21, v22, v23;
@@ -74,7 +78,7 @@ public class FigureIdentifierMZ2 {
     	v22 = Math.abs(t_B2EnAir.get(0) - t_B2EnAir.get(2));
     	v23 = Math.abs(t_B2EnAir.get(1) - t_B2EnAir.get(2));
     	
-    	if(v21 <= 3 || v22 <=3 || v23 <=3){
+    	if(v21 <= 10 || v22 <= 10 || v23 <= 10){
     		return CONSTANTES.ROUGE;
     	}
     	else{
@@ -82,12 +86,18 @@ public class FigureIdentifierMZ2 {
     	}
 		
     }
-    
+   
+    /**
+     * Calculates the acceleration modulus
+     * */
     public static int ModAcc(int A, int B, int C)
     {  
     	return modAcc2 = (int) Math.sqrt(Math.pow(A, 2) + Math.pow(B, 2) + Math.pow(C, 2));
     }
     
+    /**
+     * reset the initialization
+     * */
     public static void reset(){
         points_B1.clear();
         points_B2.clear();

@@ -126,26 +126,30 @@ public class Point {
 	public void parseDataRec(){
 		
 		//
-		String [] decoupe_ = dataRec.split("_");
-		idBall = decoupe_[0];
-		
-		String [] decoupeDP = decoupe_[1].split("::");
-		
-		String [] decoupeSPG = decoupeDP[0].split(":");
-		
-		String [] decoupeSPA = decoupeDP[1].split(":");
-		
-		String [] decoupeG =  decoupeSPG[1].split("D");
-		
-		String [] decoupeA =  decoupeSPA[1].split("D");
-		
-		x = Integer.parseInt(decoupeG[0]);
-		y = Integer.parseInt(decoupeG[1]);
-		z = Integer.parseInt(decoupeG[2]);
-		
-		a = Integer.parseInt(decoupeA[0]);
-		b = Integer.parseInt(decoupeA[1]);
-		c = Integer.parseInt(decoupeA[2]);
+		try{
+			String [] decoupe_ = dataRec.split("_");
+			idBall = decoupe_[0];
+			
+			String [] decoupeDP = decoupe_[1].split("::");
+			
+			String [] decoupeSPG = decoupeDP[0].split(":");
+			
+			String [] decoupeSPA = decoupeDP[1].split(":");
+			
+			String [] decoupeG =  decoupeSPG[1].split("D");
+			
+			String [] decoupeA =  decoupeSPA[1].split("D");
+			
+			x = Integer.parseInt(decoupeG[0]);
+			y = Integer.parseInt(decoupeG[1]);
+			z = Integer.parseInt(decoupeG[2]);
+			
+			a = Integer.parseInt(decoupeA[0]);
+			b = Integer.parseInt(decoupeA[1]);
+			c = Integer.parseInt(decoupeA[2]);
+		}
+		catch(Exception e){
+	    }
 	}
 	
 }

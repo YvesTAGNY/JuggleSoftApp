@@ -83,6 +83,7 @@ public class Tracer extends JFrame {
 	
 }
 
+//Blue circle poster
 class BalleBleu extends JPanel {
 	
 	public void paint(Graphics g) {
@@ -94,6 +95,7 @@ class BalleBleu extends JPanel {
 	}
 }
 
+//Red circle poster
 class BalleRouge extends JPanel {
 	
 	public void paint(Graphics g) {
